@@ -1,15 +1,9 @@
 # MoMambas
 Source code of "MoMambas"
 
-## Datasets
-
-### From Baidu net disk:
-    link:  https://pan.baidu.com/s/1yjDck2m8ss31ifwhIVSyUw 
-    key: kikx 
-### From Goolgle disk
-
-
-### Download datasets:
+## Download datasets:
+* Download [datasets](https://pan.baidu.com/s/1S3-8fCwoMeaRs0u4tCPYFg) from BaiduNetdisk, extract with code: **aigf**.
+* Extract each dataset according to the following paths:
 ```shell
 # root path of the datasets 
 datasets/
@@ -17,19 +11,15 @@ datasets/
 ├── BF3.2_FCC
 ├── BF5_Amor_48
 ├── BF5_Amor
-├── Pt_Extreme
+├── Pt_Extreme/
 |        ├── BF5FCC 
 |        ├── BF3.2FCC
 |        └── BF5Amor
-└── Fe
+└── Fe/
     ├── Fe214
     ├── Fe256
     └── Fe300
 ```
-
-
-
-## Train
 
 ## Environment
 ```shell
@@ -46,9 +36,10 @@ datasets/
 % torch                     2.0.1                    
 % torchvision               0.15.2 
 ```
-## Training config
 
-### Config file path in source code:
+## Train
+
+### Config file path in source code folder:
 ```shell
 source
    ├──config/
@@ -65,63 +56,61 @@ source
     "mom":{"num_experts":[3,3,3,3],"top_k":2,"emb_type":"PE","head":2,"use_aux_loss":false},
     "datasets_path":"/path of datasets",
     "batch_size":3,
-    "total_batch":3,//batch_size*n_batch_size
-    "N_epoch":100,    // epoch
+    "total_batch":3,
+    "N_epoch":100, 
     "output_folder":"/path of test tomograms",
     "test":false,
     "save_folder":"./experiments/"
 }
 ```
-### Training Config of Dataset:
-Train single datasets:
+### Config of Training Dataset:
+* Train **single** datasets:
 ```json
 "dataset_name":"BF5_FCC",
 ```
-Train "Pt Mixed":
+* Train **Pt Mixed**:
 ```json
 "dataset_name":"BF5_FCC,BF5_Amor,BF3.2_FCC",
 ```
-Train "Pt Extreme":
+* Train **Pt Extreme**:
 ```json
 "dataset_name":"Pt_Extreme/BF3.2FCC,Pt_Extreme/BF5FCC,Pt_Extreme/BF5Amor",
 ```
-Train "Fe MultiScale":
+* Train **Fe MultiScale**:
 ```json
 "dataset_name":"Fe/Fe214,Fe/Fe256,Fe/Fe300",
 ```
-Train "All Mixed":
+* Train **All Mixed**:
 ```json
 "dataset_name":"BF5_FCC,BF5_Amor,BF3.2_FCC,Pt_Extreme/BF3.2FCC,Pt_Extreme/BF5FCC,Pt_Extreme/BF5Amor,Fe/Fe214,Fe/Fe256,Fe/Fe300",
 ```
-### Resume Config of Dataset:
-1.Put the resume folder in experiments folder:
+### Resume of Pre-trained Weight:
+* Put the resume folder in experiments folder:
 ```shell
 source
    ├──experiments/
    |     └── MoMamba_EC-BF5_FCC(3)-06201419
 ```
-2.Set config:
+* Set config:
 ```json
 "resume_state":"MoMamba_EC-BF5_FCC(3)-06201419",
 ```
-### MoM Config:
+### Config of MoM:
 ```json
 "mom":{"num_experts":[3,3,3,3],"top_k":2,"emb_type":"PE","head":2,"use_aux_loss":false},
-
-% num_experts: expert number of MoM on each stage
-% top_k : top-k of MoM
-% emb_type : "PE","LPE","RPE" (Corresponding to "SPE", "LPE", and "RoPE" in the paper) 
-% head : head number of MHR
-% use_aux_loss : use aux loss or not
 ```
-### Other Variants of MoMambas:
+* num_experts: expert number of MoM on each stage
+* top_k : top-k of MoM
+* emb_type : "PE","LPE","RPE" (Corresponding to "SPE", "LPE", and "RoPE" in the paper) 
+* head : head number of MHR
+* use_aux_loss : use aux loss or not
+### Other Variants:
 ```json
 "model_name":"MoMamba_EC",
-
-% MoMamba_EC : MoMambas with EC-backbone
-% MoMamba_Dn : DnCNN-MoM in paper
-% MoMamba_MLP':MoM with MLP as experts
-``` 
+```
+* MoMamba_EC : MoMambas with EC-backbone
+* MoMamba_Dn : DnCNN-MoM in paper
+* MoMamba_MLP':MoM with MLP as experts
 ### Run:
 ```python
     python main.py
