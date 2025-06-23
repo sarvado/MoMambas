@@ -1,0 +1,16 @@
+{
+    "resume_state":"",
+    "model_name":"MoMamba_EC",
+    "dataset_name":"BF5_FCC,BF5_Amor,BF3.2_FCC",
+    "info":"[GPU:0]",
+    "gpu_id":"0",
+    "mom":{"num_experts":[3,3,3,3],"top_k":2,"emb_type":"PE","head":2,"use_aux_loss":false},
+    "datasets_path":"/mnt/data/workspace/datasets/DL/",
+    "batch_size":3,
+    "total_batch":3,//batch_size*n_batch_size
+    "N_epoch":100,    // epoch
+    "output_folder":"",
+    "test":false,
+    "save_folder":"./experiments/"
+
+}
