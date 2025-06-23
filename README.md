@@ -99,18 +99,18 @@ source
 ```json
 "mom":{"num_experts":[3,3,3,3],"top_k":2,"emb_type":"PE","head":2,"use_aux_loss":false},
 ```
-* num_experts: expert number of MoM on each stage
-* top_k : top-k of MoM
-* emb_type : "PE","LPE","RPE" (Corresponding to "SPE", "LPE", and "RoPE" in the paper) 
-* head : head number of MHR
-* use_aux_loss : use aux loss or not
+* "num_experts" : expert number of MoM on each stage
+* "top_k" : top-k of MoM
+* "emb_type" : "PE","LPE","RPE" (Corresponding to "SPE", "LPE", and "RoPE" in the paper) 
+* "head" : head number of MHR
+* "use_aux_loss" : use aux loss or not
 ### Other Variants:
 ```json
 "model_name":"MoMamba_EC",
 ```
-* MoMamba_EC : MoMambas with EC-backbone
-* MoMamba_Dn : DnCNN-MoM in paper
-* MoMamba_MLP':MoM with MLP as experts
+* "MoMamba_EC" : MoMambas with EC-backbone
+* "MoMamba_Dn" : DnCNN-MoM in paper
+* "MoMamba_MLP" : MoM with MLP as experts
 ### Run:
 ```python
     python main.py
