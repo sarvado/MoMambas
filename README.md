@@ -84,17 +84,6 @@ source
 ```json
 "dataset_name":"BF5_FCC,BF5_Amor,BF3.2_FCC,Pt_Extreme/BF3.2FCC,Pt_Extreme/BF5FCC,Pt_Extreme/BF5Amor,Fe/Fe214,Fe/Fe256,Fe/Fe300",
 ```
-### Resume of Pre-trained Weight:
-* Put the resume folder in experiments folder:
-```shell
-source
-   ├──experiments/
-   |     └── MoMamba_EC-BF5_FCC(3)-06201419
-```
-* Set config:
-```json
-"resume_state":"MoMamba_EC-BF5_FCC(3)-06201419",
-```
 ### Config of MoM:
 ```json
 "mom":{"num_experts":[3,3,3,3],"top_k":2,"emb_type":"PE","head":2,"use_aux_loss":false},
@@ -115,5 +104,29 @@ source
 ```python
     python main.py
 ```
+A new folder will be created in experiments folder. 
 
-### Pre-trained weights:
+## Test:
+
+### Download Pre-trained Weight:
+* Download [pre-trained](https://pan.baidu.com/s/1gYVsiJb7pCVjpWQOgw6wdA) from BaiduNetdisk, extract with code: **91s2**.
+* Put the downloaded weights folder in "experiments" folder:
+```shell
+source
+   ├──experiments/
+   |     └── MoMamba_EC-AllMixed-05160128
+```
+### Test COnfig:
+Set resume weights in config:
+```json
+"resume_state":"MoMamba_EC-AllMixed-05160128",
+"output_folder":"/path of test tomograms",
+"test":true,
+```
+* "resume_state" : folder of pre-trained weights
+* "output_folder" : path of test tomogram folder
+### Run:
+```python
+    python main.py
+```
+A new folder will be created in experiments folder. 
