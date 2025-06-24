@@ -58,7 +58,7 @@ source
     "batch_size":3,
     "total_batch":3,
     "N_epoch":100, 
-    "output_folder":"/path of test tomograms",
+    "output_folder":"/folder of user test tomograms",
     "test":false,
     "save_folder":"./experiments/"
 }
@@ -99,7 +99,6 @@ source
 ```
 * "MoMamba_EC" : MoMambas with EC-backbone
 * "MoMamba_Dn" : DnCNN-MoM in paper
-* "MoMamba_MLP" : MoM with MLP as experts
 ### Run:
 ```python
     python main.py
@@ -116,15 +115,15 @@ source
    ├──experiments/
    |     └── MoMamba_EC-AllMixed-05160128
 ```
-### Test COnfig:
+### Set Test COnfig:
 Set resume weights in config:
 ```json
 "resume_state":"MoMamba_EC-AllMixed-05160128",
-"output_folder":"/path of test tomograms",
+"output_folder":"/folder of user test tomograms",
 "test":true,
 ```
-* "resume_state" : folder of pre-trained weights
-* "output_folder" : path of test tomogram folder
+* "resume_state" : folder of pre-trained weights, use relative path
+* "output_folder" : folder of user test tomograms, use full path
 ### Run:
 ```python
     python main.py
