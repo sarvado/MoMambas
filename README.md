@@ -90,7 +90,7 @@ source
 ```
 * "num_experts" : expert number of MoM on each stage
 * "top_k" : top-k of MoM
-* "emb_type" : "PE","LPE","RPE" (Corresponding to "SPE", "LPE", and "RoPE" in the paper) 
+* "emb_type" : "PE","LE","RPE" (Corresponding to "SPE", "LPE", and "RoPE" in the paper) 
 * "head" : head number of MHR
 * "use_aux_loss" : use aux loss or not
 ### Other Variants:
