@@ -37,18 +37,20 @@ if __name__ == "__main__":
 
     # resume state
     resume_state = config['resume_state']
+
     resume_content, model_name,dataset_name,start_epoch,mom = resume(resume_state, save_folder_)
     if resume_content=="":
         model_name=config["model_name"]
         dataset_name = config["dataset_name"]
     else:
         config["model_name"]=model_name
-        config["dataset_name"]=dataset_name 
+        if dataset_name !="":       
+            config["dataset_name"]=dataset_name 
         if mom !="":
             config["mom"]=mom      
 
     #save folder
-    d_name = dataset_name.replace('/','_').split(",")
+    d_name = config["dataset_name"].replace('/','_').split(",")
     save_name='{}-{}({})-{}'.format(model_name, d_name[0],int(len(d_name)),datetime.now().strftime('%m%d%H%M'))    
     save_folder=os.path.join(save_folder_, save_name)
     if os.path.exists(save_folder) ==False:
@@ -85,14 +87,6 @@ if __name__ == "__main__":
         logger.info("resume state: %s" %resume_state)        
         model.load_state_dict(torch.load(resume_state_path))
         model.to(DEVICE)  
-
-
- 
-    #check flops
-    if True:
-        model.return_aux_loss = False
-        checkFLOPs(model,data_controller.data_size,logger)
-        model.return_aux_loss = True
 
     if paraller_model:
         model=nn.DataParallel(model)

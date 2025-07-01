@@ -67,6 +67,7 @@ class MoMamba_Dn(nn.Module):
 
         self.layers.append(conv_end)
         self.dncnn3d = nn.Sequential(*self.layers)
+        self.return_aux_loss=True
         
         
     def forward(self, x):

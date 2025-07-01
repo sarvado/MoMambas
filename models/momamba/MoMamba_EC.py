@@ -262,6 +262,7 @@ class MoMamba_EC(nn.Module):
         self.weights = nn.Parameter(torch.ones(8,1,1,1,1,1)*(1.0/8))
 
         self.apply(self._init_weights)
+        self.return_aux_loss=True
 
     def _init_weights(self, m):
         if isinstance(m, (nn.Conv3d, nn.Linear)):
